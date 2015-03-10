@@ -1,14 +1,14 @@
-all: test
+all: dlist
 
-dlist: main.o hello.o
-	g++ main.o factorial.o hello.o -o hello
+dlist: dlist_main.o dlist.o
+	gcc dlist_main.o dlist.o -o dlist_test
 
-main.o: main.cpp
-	g++ -c main.cpp
+dlist_main.o: dlist_main.c
+	gcc -c dlist_main.c
 
 dlist.o: dlist.c
 	gcc -c dlist.c
 
 clean:
-	rm *.o
+	rm *.o dlist_test
 

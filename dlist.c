@@ -3,13 +3,14 @@
 
 #include "dlist.h"
 
-int dlist_print(DList *list, DListPrint print) {
-	int err = 0;
-
+DListRet
+dlist_foreach(DList *list, DListVisit visit, void *ctx)
+{
+	DListRet err = DLIST_OK;
 	DListNode *iter = list->first;
-	while (iter != NULL) {
-		print(iter->data);
+
+	while (iter != NULL && err == DLIST_OK) {
+		err = visit(iter->data, ctx);
 		iter = iter->next;
 	}
-	return (err);
 }

@@ -5,6 +5,12 @@
 extern "C"{
 #endif
 
+typedef enum {
+	DLIST_OK = 0,
+	DLIST_STOP,
+	DLIST_UNKNOWN
+} DListRet;
+
 typedef struct _DListNode {
 	struct _DListNode *prev;
 	struct _DListNode *next;
@@ -15,9 +21,8 @@ typedef struct _DList {
 	DListNode *first;  
 } DList;
 
-typedef int (*DListPrint)(void *data);
-
-extern int dlist_print(DList *, DListPrint);
+typedef void (*DListPrint)(void *data);
+typedef DListRet (*DListVisit)(void *data, void *ctx);
 
 #ifdef __cplusplus
 }
