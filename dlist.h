@@ -8,6 +8,7 @@ extern "C"{
 typedef enum {
 	DLIST_OK = 0,
 	DLIST_STOP,
+	DLIST_NOMEM,
 	DLIST_UNKNOWN
 } DListRet;
 
@@ -23,6 +24,14 @@ typedef struct _DList {
 
 typedef void (*DListPrint)(void *data);
 typedef DListRet (*DListVisit)(void *data, void *ctx);
+
+extern DListRet dlist_foreach(DList *, DListVisit, void *);
+extern DList *dlist_create(void);
+extern size_t dlist_length(DList *);
+extern DListRet dlist_insert(DList *, size_t, void *);
+extern DListRet dlist_append(DList *, void *);
+extern DListRet dlist_prepend(DList *, void *);
+extern void dlist_destroy(DList *);
 
 #ifdef __cplusplus
 }
