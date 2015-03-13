@@ -14,6 +14,7 @@ dlist_foreach(DList *list, DListVisit visit, void *ctx)
 		err = visit(iter->data, ctx);
 		iter = iter->next;
 	}
+	return (err);
 }
 
 DList *
